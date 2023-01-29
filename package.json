@@ -1,7 +1,8 @@
 {
   "dependencies": {
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.8.0"
   },
   "name": "reactlesson",
   "description": "* [ ] Say hello to react - parcel generates react app from jsx\r * [ ] Requests in React - Navigate\r * [ ] List existing movies \r * [ ] Add new movie using forms and state\r * [ ] Encapsulate movie database\r * [ ] Express app\r * [ ] Movie API to server",
