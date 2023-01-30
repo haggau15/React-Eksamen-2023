@@ -1,7 +1,7 @@
 import * as React from "react";
 import {Route, Link, BrowserRouter, Routes, useNavigate} from "react-router-dom"
 import { createRoot } from 'react-dom/client';
-import {useState} from "react";
+import {useEffect, useState} from "react";
 
 const MOVIES=[
     {
@@ -39,12 +39,20 @@ return(
 )
 }
 
-function ListMovies(movies){
-    console.log(movies);
+function ListMovies({moviesAPI}){
+    const [movies,setMovies]=useState();
+    useEffect(async()=> {
+        setMovies(undefined);
+        setMovies(await moviesAPI.listMovies());
+        },[]);
+    if(!movies)
+    {
+        return (<div>loading...</div>)
+    }
     return(
         <div >
             <h1>Movies</h1>
-                    {movies.movies.map(m=>
+                    {movies.map(m=>
                         <div key={m.title}>
                             <h2>{m.title} ({m.year}</h2>
                             <div> {m.plot}</div>
@@ -52,16 +60,16 @@ function ListMovies(movies){
         </div>)
 }
 
-function NewMovie({onAddMovie}) {
+function NewMovie({moviesAPI}) {
     const [title,setTitle]=useState("");
     const [plot,setPlot]=useState("");
     const [year,setYear]=useState("");
 
     const navigate = useNavigate();
-    function handleSubmit(e)
+    async function handleSubmit(e)
     {
         e.preventDefault();
-        onAddMovie({plot,title,year});
+        await moviesAPI.onAddMovie({plot,title,year});
         navigate("/")
     }
     return(
@@ -85,12 +93,16 @@ function NewMovie({onAddMovie}) {
 }
 
 function Application(){
+    const moviesAPI={
+        onAddMovie: async (m)=>MOVIES.push(m),
+        listMovies: async () => MOVIES
+    }
         return (
             <BrowserRouter>
                 <Routes >
                     <Route path="/" element={<FrontPage/>}/>
-                    <Route path="/movies/new" element={<NewMovie onAddMovie={(m=> MOVIES.push(m))}/>}/>
-                    <Route path="/movies" element={<ListMovies movies={MOVIES}/>}/>
+                    <Route path="/movies/new" element={<NewMovie moviesAPI={moviesAPI}/>}/>
+                    <Route path="/movies" element={<ListMovies moviesAPI={moviesAPI}/>}/>
                 </Routes>
             </BrowserRouter>)
 
