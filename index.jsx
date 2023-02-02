@@ -40,10 +40,13 @@ return(
 }
 
 function ListMovies({moviesAPI}){
-    const [movies,setMovies]=useState();
-    useEffect(async()=> {
+    const setValues = async () =>{
         setMovies(undefined);
         setMovies(await moviesAPI.listMovies());
+    }
+    const [movies,setMovies]=useState();
+    useEffect(()=> {
+        setValues();
         },[]);
     if(!movies)
     {

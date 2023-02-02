@@ -2,3 +2,4 @@
 /.idea/
 /.parcel-cache/
 node_modules
+server/node_modules
