@@ -1,0 +1,29 @@
+{
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.8.0"
+  },
+  "name": "reactlesson",
+  "description": "* [ ] Say hello to react - parcel generates react app from jsx\r * [ ] Requests in React - Navigate\r * [ ] List existing movies \r * [ ] Add new movie using forms and state\r * [ ] Encapsulate movie database\r * [ ] Express app\r * [ ] Movie API to server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {
+    "parcel": "^2.8.3",
+    "process": "^0.11.10"
+  },
+  "scripts": {
+    "dev": "../node_modules/.bin/parcel index.html",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/haggau15/ReactMovieDB.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/haggau15/ReactMovieDB/issues"
+  },
+  "homepage": "https://github.com/haggau15/ReactMovieDB#readme"
+}
