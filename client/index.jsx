@@ -2,30 +2,7 @@ import * as React from "react";
 import {Route, Link, BrowserRouter, Routes, useNavigate} from "react-router-dom"
 import { createRoot } from 'react-dom/client';
 import {useEffect, useState} from "react";
-
-const MOVIES=[
-    {
-        title:"The matrix",
-        plot:"A computer hacker learns from mysterious rebels about the true nature of his reality",
-        year: "1999"
-    },
-    {
-        title:"The boondock saints",
-        plot:"Two Irish Catholic brothers become vigilantes and wipe out Boston's criminal underworld in the name of God",
-        year: "1999"
-    }];
-const MOVIES2= [
-    {
-        title: "Don't look up",
-        plot: "Impending disaster, but will politicians act?",
-        year: 2021
-    },
-    {
-        title: "Web development",
-        plot: "Johannes Codes, everyone is confused",
-        year: 2022
-    },
-]
+import {m} from "caniuse-lite/data/browserVersions";
 
 function FrontPage() {
 return(
@@ -46,7 +23,7 @@ function ListMovies({moviesAPI}){
     }
     const [movies,setMovies]=useState();
     useEffect(()=> {
-        setValues();
+        setValues()
         },[]);
     if(!movies)
     {
@@ -97,8 +74,19 @@ function NewMovie({moviesAPI}) {
 
 function Application(){
     const moviesAPI={
-        onAddMovie: async (m)=>MOVIES.push(m),
-        listMovies: async () => MOVIES
+        onAddMovie: async (m) => {
+            await fetch("/api/movies",{
+                method:"POST",
+                headers: {
+                    "content-type": "application/json"
+                },
+                body:JSON.stringify(m)
+            })
+        },
+        listMovies: async () => {
+            const res = await fetch("/api/movies");
+            return res.json();
+        }
     }
         return (
             <BrowserRouter>
@@ -110,8 +98,6 @@ function Application(){
             </BrowserRouter>)
 
 }
-
-
-const container =     document.getElementById("app")
+const container = document.getElementById("app")
 const root = createRoot(container);
 root.render(<Application/>);
