@@ -127,10 +127,13 @@
     "jest-environment-jsdom": "^29.4.2"
   },
   "scripts": {
+    "build": "npm run build:server",
+    "build:server": "cd server && npm run build",
     "dev": "concurrently npm:dev:client npm:dev:server",
     "dev:client": "cd client && npm run dev",
     "dev:server": "cd server && npm run dev",
-    "test": "jest"
+    "test": "jest",
+    "run": "cd server && npm start"
   },
   "repository": {
     "type": "git",

@@ -19,10 +19,11 @@ return(
 
 
 
-function Application(){
+export function Application(){
+    console.log("Oah");
     const moviesAPI={
         onAddMovie: async (m) => {
-            await fetch("/api/movies",{
+            await fetch("/api/movies/",{
                 method:"POST",
                 headers: {
                     "content-type": "application/json"

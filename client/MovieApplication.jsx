@@ -20,7 +20,7 @@ export function ListMovies({moviesAPI}){
             <h1>Movies</h1>
             {movies.map(m=>
                 <div key={m.title}>
-                    <h2>{m.title} ({m.year}</h2>
+                    <h2>{m.title} ({m.year})</h2>
                     <div> {m.plot}</div>
                 </div>)}
         </div>)
