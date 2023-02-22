@@ -1,6 +1,6 @@
 * [x] Some form of Login and access control
 * [x] Jest tests
-* [x] Snapshot tests (Technically)
+* [x] Snapshot tests (Technically. Data isn't loaded so it only contains loading...)
 * [ ] Simulate + jest.fn
 * [ ] Supertest
 * [ ] Github Actions with coverage report
