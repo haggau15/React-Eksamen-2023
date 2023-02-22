@@ -2,11 +2,36 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Movie Database</title>
+    <title>Task manager</title>
 </head>
 <body>
+<div id="user"></div>
 <div id="app"></div>
 
 </body>
 <script src="index.jsx" type="module"></script>
+
+<script>
+    async function fetchUsername() {
+        console.log
+        const res = await fetch("/api/login/");
+        if(res.ok){
+            const {username} = await res.json();
+            document.getElementById("user").innerHTML = `<div>Hello ${username}</div>`
+        }
+    }
+    fetchUsername();
+</script>
+
 </html>
+
+<!--
+<div id="logout"></div>
+<div id="login"></div>
+
+            document.getElementById("logout").innerHTML = `<button >Logout</button>`
+
+else {
+            document.getElementById("login").innerHTML = "<button onClick={Login}>login</button>"
+        }
+-->

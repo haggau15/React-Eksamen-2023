@@ -3,6 +3,7 @@ import {useNavigate} from "react-router-dom";
 import * as React from "react";
 
 export function ListMovies({moviesAPI}){
+    const navigate=useNavigate();
     const setValues = async () =>{
         setMovies(undefined);
         setMovies(await moviesAPI.listMovies());
@@ -15,8 +16,13 @@ export function ListMovies({moviesAPI}){
     {
         return (<div>loading...</div>)
     }
+    async function handleOnclick(e){
+        e.preventDefault();
+        navigate("/");
+    }
     return(
         <div >
+            <button onClick={handleOnclick}>Return</button>
             <h1>Movies</h1>
             {movies.map(m=>
                 <div key={m.title}>
@@ -38,8 +44,15 @@ export function NewMovie({moviesAPI}) {
         await moviesAPI.onAddMovie({plot,title,year});
         navigate("/")
     }
+    async function handleOnclick(e){
+        e.preventDefault();
+        navigate("/");
+    }
     return(
-        <form onSubmit={handleSubmit}>
+        <>
+        <button onClick={handleOnclick}>Return</button>
+
+    <form onSubmit={handleSubmit}>
             <h1>New movie</h1>
             <div>
                 <label>Title: <input value={title} onChange={e=> setTitle(e.target.value)}/></label>
@@ -54,6 +67,6 @@ export function NewMovie({moviesAPI}) {
             <pre>
                 {JSON.stringify({title,year,plot})}
             </pre>
-        </form>
+        </form></>
     )
 }

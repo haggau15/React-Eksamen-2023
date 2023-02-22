@@ -1,26 +1,30 @@
 import * as React from "react";
-import {Route, Link, BrowserRouter, Routes, useNavigate} from "react-router-dom"
+import {Route, Link, BrowserRouter, Routes} from "react-router-dom"
 import { createRoot } from 'react-dom/client';
-import {useEffect, useState} from "react";
-import {m} from "caniuse-lite/data/browserVersions";
+
 import {ListMovies, NewMovie} from "./MovieApplication";
+import {UpdateUser} from "./UpdateUser";
+import {Login, Logout} from "./Login";
+import {DeleteUser} from "./DeleteUser";
+import {ListUsers} from "./AllUsers";
+import {NewUser} from "./NewUser";
 
 function FrontPage() {
 return(
      <div>
             <h1>Movie DB</h1>
-            <ul>
-                <li><Link to="/movies/new">New movie</Link></li>
-                <li><Link to="/movies">All movies</Link></li>
-            </ul>
+                <div><Link to="/login">Log in</Link></div>
+                <div><Link to="/user/update">Update user</Link></div>
+                <div><Link to="/user/delete">Delete user</Link></div>
+                <div><Link to="/user/all">All users</Link></div>
+                <div><Link to="/user/new">Add new user</Link></div>
+
+         <div><button onClick={Logout}>Logout</button></div>
         </div>
 )
 }
 
-
-
 export function Application(){
-    console.log("Oah");
     const moviesAPI={
         onAddMovie: async (m) => {
             await fetch("/api/movies/",{
@@ -40,8 +44,11 @@ export function Application(){
             <BrowserRouter>
                 <Routes >
                     <Route path="/" element={<FrontPage/>}/>
-                    <Route path="/movies/new" element={<NewMovie moviesAPI={moviesAPI}/>}/>
-                    <Route path="/movies" element={<ListMovies moviesAPI={moviesAPI}/>}/>
+                    <Route path="/user/update" element={<UpdateUser/>}/>
+                    <Route path="/login" element={<Login/>}/>
+                    <Route path="/user/delete" element={<DeleteUser/>}/>
+                    <Route path="/user/all" element={<ListUsers/>}/>
+                    <Route path="/user/new" element={<NewUser/>}/>
                 </Routes>
             </BrowserRouter>)
 

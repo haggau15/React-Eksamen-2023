@@ -6,3 +6,5 @@ server/node_modules
 /client/.parcel-cache/
 /client/dist/
 /server/.env
+/.github/workflows/secrets
+/server/node_modules
